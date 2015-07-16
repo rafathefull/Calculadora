@@ -23,11 +23,16 @@ public class MainActivity extends ActionBarActivity {
     private Button btn9;
     private Button btnmas;
     private Button btnmenos;
+    private Button btnmult;
+    private Button btndiv;
     private Button btnce;
     private double nResult;
     private String cAcumulador;
     private int operacion;
     private Button btnigual;
+    private double operador;
+    private double operadando;
+    private Button btnpunto;
 
 
     public void setAcumulador( String cAccumulator ) {
@@ -41,6 +46,8 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         nResult = 0.0;
+        operador = 0.0;
+        operadando = 0.0;
         cAcumulador = "";
 
         btn0 = ( Button ) findViewById(R.id.btn0);
@@ -57,6 +64,10 @@ public class MainActivity extends ActionBarActivity {
         btnmenos = ( Button ) findViewById(R.id.btnmenos);
         btnce = ( Button ) findViewById(R.id.btnce);
         btnigual = ( Button ) findViewById(R.id.btnigual);
+        btnpunto = ( Button ) findViewById(R.id.btnpunto);
+        btnmult = ( Button ) findViewById(R.id.btnmult);
+        btndiv = ( Button ) findViewById(R.id.btndiv);
+
         display = ( TextView ) findViewById(R.id.display );
         display.setText("");
 
@@ -64,11 +75,19 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 nResult = 0.0;
+                operador = 0.0;
+                operadando = 0.0;
                 cAcumulador = "";
                 display.setText("");
             }
         });
 
+        btnpunto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setAcumulador(".");
+            }
+        });
         btn0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,39 +153,75 @@ public class MainActivity extends ActionBarActivity {
         btnmas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if( !cAcumulador.isEmpty()) {
-                    nResult += Double.parseDouble(cAcumulador);
-                    display.setText(Double.toString(nResult));
+                    operador = Double.parseDouble( cAcumulador );
                     cAcumulador = "";
                     operacion = 1;
-                }
+                    display.setText("");
+
             }
         } );
 
         btnmenos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if( !cAcumulador.isEmpty()) {
-                    nResult = nResult - Double.parseDouble(cAcumulador);
-                    display.setText(Double.toString(nResult));
+                    operador = Double.parseDouble( cAcumulador );
                     cAcumulador = "";
                     operacion = 2;
-                }
+                    display.setText("" );
             }
         } );
+
+        btnmult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                operador = Double.parseDouble( cAcumulador );
+                cAcumulador = "";
+                operacion = 3;
+                display.setText("" );
+            }
+        } );
+
+        btndiv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                operador = Double.parseDouble( cAcumulador );
+                cAcumulador = "";
+                operacion = 4;
+                display.setText("" );
+            }
+        } );
+
+
 
         btnigual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if( !cAcumulador.isEmpty()) {
-                    switch ( operacion ) {
-                        case 1: nResult += Double.parseDouble( cAcumulador );
-                                break;
-                        case 2: nResult -= Double.parseDouble( cAcumulador );
-                                break;
-                    }
+                if( !cAcumulador.isEmpty() && operacion != 0 )  {
+                    operadando = Double.parseDouble( cAcumulador );
+                  try {
+                      switch (operacion) {
+                          case 1:
+                              nResult = operador + operadando;
+                              break;
+                          case 2:
+                              nResult = operador - operadando;
+                              break;
+                          case 3:
+                              nResult = operador * operadando;
+                              break;
+                          case 4:
+                              nResult = operador / operadando;
+                              break;
+                      }
+                  } catch ( ArithmeticException e ){
+                    nResult = 0;
+                  }
+
                     display.setText(Double.toString( nResult ) );
-                    cAcumulador = "";
+                    cAcumulador = Double.toString( nResult ) ;
+                    operacion = 0;
+                    operador = 0;
+                    operadando = 0;
                 }
             }
         } );

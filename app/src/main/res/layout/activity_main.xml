@@ -158,8 +158,15 @@
                 android:text="0"
                 android:id="@+id/btn0"
                 android:layout_column="21"
-                android:layout_span="3"
+                android:layout_span="2"
                 android:typeface="serif" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="."
+                android:id="@+id/btnpunto"
+                android:layout_column="23" />
 
             <Button
                 android:layout_width="wrap_content"
