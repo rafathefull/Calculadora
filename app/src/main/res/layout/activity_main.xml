@@ -20,24 +20,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Large Text"
+                android:text="Calculadora"
                 android:id="@+id/display"
                 android:layout_column="21"
                 android:layout_span="3"
-                android:height="50dp"
+                android:height="100dp"
                 android:background="#000"
                 android:autoText="false"
                 android:editable="false"
                 android:textColor="#FFF"
                 android:textIsSelectable="true"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:elegantTextHeight="false" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CE"
                 android:id="@+id/btnce"
-                android:layout_column="24" />
+                android:layout_column="25" />
+
         </TableRow>
 
         <TableRow
@@ -70,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:text="/"
                 android:id="@+id/btndiv"
-                android:layout_column="24" />
+                android:layout_column="25" />
 
         </TableRow>
 
@@ -104,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:text="*"
                 android:id="@+id/btnmult"
-                android:layout_column="24" />
+                android:layout_column="25" />
 
         </TableRow>
 
@@ -138,7 +141,7 @@
                 android:layout_height="wrap_content"
                 android:text="-"
                 android:id="@+id/btnmenos"
-                android:layout_column="24" />
+                android:layout_column="25" />
 
         </TableRow>
 
@@ -173,7 +176,7 @@
                 android:layout_height="wrap_content"
                 android:text="+"
                 android:id="@+id/btnmas"
-                android:layout_column="24" />
+                android:layout_column="25" />
 
         </TableRow>
 
@@ -186,8 +189,8 @@
                 android:layout_height="wrap_content"
                 android:text="="
                 android:id="@+id/btnigual"
-                android:layout_column="23"
-                android:layout_span="2" />
+                android:layout_column="21"
+                android:layout_span="5" />
         </TableRow>
 
         <TableRow
